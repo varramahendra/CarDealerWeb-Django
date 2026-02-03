@@ -1,0 +1,227 @@
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://images.unsplash.com/photo-1502489597346-dad15683d4c2?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        h1 {
+  text-align: center;
+  color: #333;
+  margin-top: 20px;
+  font-size: 2.5em;
+  position: relative;
+  overflow: hidden;
+}
+
+h1 {
+  text-align: center;
+  color: #e8dfdf;
+  margin-top: 20px;
+  font-size: 2.5em;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* subtle glow */
+}
+h1 {
+  text-align: center;
+  color: #080707; /* White text for contrast */
+  margin-top: 20px;
+  font-size: 2.5em;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); /* White glowing effect */
+  background: linear-gradient(135deg, #4a90e2, #6dd5fa); /* Gradient background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* White Sparkle Glow Effect */
+h1::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, white 0%, transparent 70%);
+  border-radius: 50%;
+  animation: sparkle 2s infinite;
+  top: 30%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+
+        .form-group {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 50%;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="number"]:focus, input[type="date"]:focus, select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        .form-group{
+            opacity: 0.6;
+        
+        }
+        #hello{
+            opacity:1;
+        }
+        button {
+            display: block;
+            width: 50%;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin: 20px auto;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .form-group select {
+            background-color: #ffffff;
+        }
+
+        .form-group input[type="tel"] {
+            background-color: #f9f9f9;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .form-group {
+                width: 80%;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            button {
+                width: 80%;
+            }
+            
+        }
+    </style>
+
+    <h1>Book Your {{ car.car_title }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="rental_period">Rental Period (days)</label>
+            <input type="number" name="rental_period" id="rental_period" class="form-control" required min="1">
+        </div>
+
+        <div class="form-group">
+            <label for="pickup_date">Pickup Date</label>
+            <input type="date" name="pickup_date" id="pickup_date" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="user_name">Your Name</label>
+            <input type="text" name="user_name" id="user_name" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="user_email">Your Email</label>
+            <input type="email" name="user_email" id="user_email" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="user_phone">Your Phone Number</label>
+            <input type="tel" name="user_phone" id="user_phone" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="car_color">Choose Car Color</label>
+            <select name="car_color" id="car_color" class="form-control" required>
+                <option value="Black">Black</option>
+                <option value="Red">Red</option>
+                <option value="White">White</option>
+                <option value="Silver">Silver</option>
+                <option value="Blue">Blue</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="city">Your City</label>
+            <select id="city" name="city" class="form-control">
+              <option value="">---</option>
+              <option value="Vijayawada">Vijayawada</option>
+              <option value="Guntur">Guntur</option>
+              <option value="Vizag">Vizag</option>
+              <option value="Kurnool">Kurnool</option>
+              <option value="Kakinada">Kakinada</option>
+              <option value="Nellore">Nellore</option>
+              <option value="Tenali">Tenali</option>
+              <option value="Eluru">Eluru</option>
+            </select>
+          </div>
+          
+
+        <div class="form-group">
+            <label for="payment_method">Payment Method</label>
+            <select name="payment_method" id="payment_method" class="form-control" required>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debit Card">Debit Card</option>
+                <option value="PayPal">PayPal</option>
+                <option value="Cash">Cash</option>
+            </select>
+        </div>
+
+        <button id="hello" type="submit" class="btn btn-primary">Confirm Rental</button>
+    </form>
+
+    <!-- Success Message Pop-up -->
+    {% if messages %}
+        <script type="text/javascript">
+            alert("{% for message in messages %}{{ message }}{% endfor %}");
+        </script>
+    {% endif %}
+{% endblock %}

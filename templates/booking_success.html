@@ -1,0 +1,98 @@
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://media0.giphy.com/media/l0IypINLJtxz80cJa/giphy.gif?cid=6c09b952vlim4zxd0j1utvhl21goq1ly70otz5ez1t0hc0r2&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        h1 {
+  text-align: center;
+  color: #333;
+  margin-top: 50px;
+  font-size: 2.5em;
+  position: relative;
+  overflow: visible;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Optional subtle glow */
+  background: linear-gradient(135deg, #ffffff, #b3d9ff); /* White to soft blue */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+/* White sparkle effect */
+h1::before, h1::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, white 0%, transparent 80%);
+  border-radius: 50%;
+  animation: sparkle 3s infinite ease-in-out;
+  opacity: 0;
+}
+
+h1::before {
+  top: -5px;
+  left: 20%;
+  animation-delay: 0.5s;
+}
+
+h1::after {
+  top: 10px;
+  left: 70%;
+  animation-delay: 1.5s;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+
+        .message {
+            text-align: center;
+            font-size: 1.5em;
+            margin-top: 30px;
+        }
+
+        .home-link {
+            display: block;
+            width: 50%;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin: 20px auto;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            margin-top: 50px;
+        }
+
+        .home-link:hover {
+            background-color: #2980b9;
+        }
+    </style>
+
+    <h1>Booking Confirmed!</h1>
+    <div class="message">
+        <marquee behavior="scroll" direction="right" scrollamount="20">
+            Your booking with Datavalley has been successfully completed😊. A confirmation email with the shop location📌 map link has been sent to your email✉️. Thank you for choosing Datavalley..🚗</marquee>    </div>
+
+    <a href="/" class="home-link">Go to Home</a>
+{% endblock %}
